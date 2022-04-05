@@ -35,32 +35,55 @@ window.addEventListener('DOMContentLoaded', () => {
   locationForm.addEventListener('submit', input)
 })
 
-const getWeather = function (location){
+const getWeather = (location) => {
   fetch(`${weatherapi.url}weather?q=${location}&units=imperial&appid=${weatherapi.key}`)
     .then(weather => weather.json())
     .then(displayWeather)
+  fetch(`${weatherapi.url}weather?q=${location}&units=imperial&appid=${weatherapi.key}`)
+    .then(weather => weather.json())
+    .then(historyButton)
 }
 
 const input = (event) => {
   event.preventDefault()
+
   // console.log('submit')
   // console.log(event.target.querySelector('input').value)
+
   const location = event.target.querySelector('input').value
   getWeather(location)
 }
 
 const displayWeather = (weather) => {
-  console.log(weather)
+
+  //console.log(weather)
 
   const info = document.querySelector('.weatherinfo')
   info.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png"/> <br> Temp: ${weather.main.temp}°, Description: ${weather.weather[0].main}, Wind: ${weather.wind.speed}mph <br> Details: ${weather.weather[0].description}`
   
   const header = document.querySelector('.header')
   header.innerHTML = ""
-  
+
   const today = new Date()
   const date = document.querySelector('.date')
   date.innerHTML = today.toDateString()
+}
+
+const historyButton = (weather) => {
+
+  //console.log(weather)
+
+  const button = document.querySelector('.historybutton')
+  const location = document.querySelector('input').value
+
+  let historyArr = []
+  historyArr.push(`Location: ${location}, Temp: ${weather.main.temp}°`)
+
+  console.log(historyArr)
+
+  button.addEventListener('click', () => {
+    alert(historyArr)
+  })
 }
 
 // const dateBuilder = function(d){
@@ -74,4 +97,3 @@ const displayWeather = (weather) => {
 //   const year = d.getFullYear()
 //   return `${day}, ${date} ${month}, ${year}`
 // }
-
