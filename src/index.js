@@ -51,30 +51,27 @@ const input = (event) => {
 
 const displayWeather = (weather) => {
   console.log(weather)
-  // const temp = document.querySelector('.temp')
-  // console.log(temp)
-  // temp.innerHTML = `TEMP: ${weather.main.temp}°`
 
   const info = document.querySelector('.weatherinfo')
-  // console.log(info)
-  info.innerHTML = `Temp: ${weather.main.temp}°, Sky: ${weather.weather[0].main}, Wind: ${weather.wind.speed}mph`
-
+  info.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png"/> <br> Temp: ${weather.main.temp}°, Description: ${weather.weather[0].main}, Wind: ${weather.wind.speed}mph <br> Details: ${weather.weather[0].description}`
+  
+  const header = document.querySelector('.header')
+  header.innerHTML = ""
+  
   const today = new Date()
   const date = document.querySelector('.date')
-  date.innerHTML = dateBuilder(today)
+  date.innerHTML = today.toDateString()
 }
 
-const dateBuilder = function(d){
-  const months = ["January", "February", "March", "April", "May", "June", "July", 
-  "August", "September", "October", "November", "December"]
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-  "Friday", "Saturday"]
-
-  const day = days[d.getDay()]
-  const date = d.getDate()
-  const month = months[d.getMonth()]
-  const year = d.getFullYear()
-
-  return `${day}, ${date} ${month}, ${year}`
-}
+// const dateBuilder = function(d){
+//   const months = ["January", "February", "March", "April", "May", "June", "July", 
+//   "August", "September", "October", "November", "December"]
+//   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+//   "Friday", "Saturday"]
+//   const day = days[d.getDay()]
+//   const date = d.getDate()
+//   const month = months[d.getMonth()]
+//   const year = d.getFullYear()
+//   return `${day}, ${date} ${month}, ${year}`
+// }
 
