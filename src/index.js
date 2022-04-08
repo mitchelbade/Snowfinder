@@ -46,7 +46,7 @@ const displayWeather = (weather) => {
 
   //this is an event listener for my coordinates button so you can double check the exact location incase the api pulls the wrong one.
   const button = document.querySelector('.coords')
-  const coords = `Longitude: ${weather.coord.lon} Latitude: ${weather.coord.lat}`
+  const coords = `${weather.name} - Longitude: ${weather.coord.lon} Latitude: ${weather.coord.lat}`
   //unable to figure out how to prevent the alert from pulling all the previous searches.
   button.addEventListener('click', () => {alert(coords)})
 }
