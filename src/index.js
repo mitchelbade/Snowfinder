@@ -17,7 +17,7 @@ const getWeather = (location) => {
 
   fetch(`${weatherapi.url}weather?q=${location}&units=imperial&appid=${weatherapi.key}`)
     .then(weather => weather.json())
-    .then(historyButton)
+    .then(coords)
 }
 
 const input = (event) => {
@@ -40,16 +40,10 @@ const displayWeather = (weather) => {
   date.innerHTML = today.toDateString()
 }
 
-const historyButton = (weather) => {
-  const button = document.querySelector('.historybutton')
-  const location = document.querySelector('input').value
-
-  let historyArr = []
-  const historyString = `Location: ${location}, Temp: ${weather.main.temp}°`
-  historyArr.push(historyString, ...historyArr)
-  console.log(historyArr)
+const coords = (weather) => {
+  const button = document.querySelector('.coords')
 
   button.addEventListener('click', () => {
-    alert(historyArr[1])
+    alert(`Longitude: ${weather.coord.lon} Latitude: ${weather.coord.lat}`)
   })
 }
