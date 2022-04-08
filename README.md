@@ -1,16 +1,16 @@
 NAME: SnowFinder
 
-GitHub:
-Youtube:
-Blog:
+GitHub: https://github.com/mitchelbade/Snowfinder.git
+Youtube: https://youtu.be/nfSBoHJ9hmE
+Blog: https://medium.com/@mitchelm.bade/snowfinder-ecdf3a5ee480
 
 ------- Description of app -------
-  This is a simple weather app aimed towards the mountain
+  This is a weather app aimed towards the mountain
 community. Intended to be simple and to the point to
 help you decide if its worth going to the mountain today. 
 
 ------- How it works -------
-  Put in your destination and your weather provided by
+  Put in your destination and the weather provided by
 openweathermap will be displayed. If you are not confident
 in the API's ability to find the right location, a coordinates button
 is in the upper left hand corner of the app allowing for you to
