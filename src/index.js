@@ -17,24 +17,21 @@ const getWeather = (location) => {
   fetch(`${weatherapi.url}weather?q=${location}&units=imperial&appid=${weatherapi.key}`)
     .then(weather => weather.json())
     .then(displayWeather)
-
-  // fetch(`${weatherapi.url}weather?q=${location}&units=imperial&appid=${weatherapi.key}`)
-  //   .then(weather => weather.json())
-  //   .then(coords)
 }
 
-const input = () => {
+const input = (event) => {
   //preventing DOM refresh invoking getWeather on submit
   event.preventDefault()
-
+  
   const location = document.querySelector('input').value
   getWeather(location)
+  document.querySelector('input').value = "";
 }
 
 const displayWeather = (weather) => {
   //formatting information using the info returned from the API added images that update depending on location.
   const info = document.querySelector('.weatherinfo')
-  info.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png"/> <br> Temp: ${weather.main.temp}°, Description: ${weather.weather[0].main}, Wind: ${weather.wind.speed}mph <br> Details: ${weather.weather[0].description}`
+  info.innerHTML = ` <img src="http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png"/> <br> <h3>${weather.name}</h3> <p>Temp: ${weather.main.temp}°, Description: ${weather.weather[0].main}, Wind: ${weather.wind.speed}mph</p> <p>Details: ${weather.weather[0].description}<p>`
   
   const header = document.querySelector('.header')
   header.innerHTML = ""
@@ -42,17 +39,12 @@ const displayWeather = (weather) => {
   //added date
   const today = new Date()
   const date = document.querySelector('.date')
-  date.innerHTML = today.toDateString()
+  date.innerHTML = `<p>${today.toDateString()}</p>`
 
   //this is an event listener for my coordinates button so you can double check the exact location incase the api pulls the wrong one.
-  const button = document.querySelector('.coords')
+  const div = document.querySelector('.coords')
+  div.innerHTML = `<button class="coords-button w3-button w3-white w3-padding-large w3-round w3-large">Coords</button>`
   const coords = `${weather.name} - Longitude: ${weather.coord.lon} Latitude: ${weather.coord.lat}`
   //unable to figure out how to prevent the alert from pulling all the previous searches.
-  button.addEventListener('click', () => {alert(coords)})
+  document.querySelector('.coords-button').addEventListener('click', () => {alert(coords)})
 }
-
-// const coords = (weather) => {
-//   const button = document.querySelector('.coords')
-//   const coords = `Longitude: ${weather.coord.lon} Latitude: ${weather.coord.lat}`
-//   button.addEventListener('click', () => {alert(coords)})
-// }
